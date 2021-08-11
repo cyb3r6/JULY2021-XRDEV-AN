@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script controls when the controllers grab
+/// </summary>
 public class VRGrab : MonoBehaviour
 {
     public GrabbableObject collidingObject;
@@ -55,6 +58,11 @@ public class VRGrab : MonoBehaviour
         {
             heldObject = collidingObject;
             heldObject.JointGrab(controller);
+
+            // interactions
+            controller.OnTriggerDown.AddListener(heldObject.OnInteractionStart);
+            controller.OnTriggerUp.AddListener(heldObject.OnInteractionStop);
+            controller.OnTriggerUpdating.AddListener(heldObject.OnInteractionUpdating);
         }
     }
 
@@ -70,6 +78,12 @@ public class VRGrab : MonoBehaviour
             // throw
             heldObject.grabbedRigidbody.velocity = controller.velocity;
             heldObject.grabbedRigidbody.angularVelocity = controller.angularVelocity;
+
+            // interactions
+            controller.OnTriggerDown.RemoveListener(heldObject.OnInteractionStart);
+            controller.OnTriggerUp.RemoveListener(heldObject.OnInteractionStop);
+            controller.OnTriggerUpdating.RemoveListener(heldObject.OnInteractionUpdating);
+
         }
     }
    

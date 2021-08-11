@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script is attached to any gameobject we want to grab.
+/// It controlls the "how" of grabbing
+/// Either parenting or fixed joints
+/// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class GrabbableObject : MonoBehaviour
 {
     public Color hoverColor;
@@ -83,5 +89,29 @@ public class GrabbableObject : MonoBehaviour
     {
         FixedJoint fx = controller.GetComponent<FixedJoint>();
         Destroy(fx);
+    }
+
+    /// <summary>
+    /// When the trigger is first pulled
+    /// </summary>
+    public virtual void OnInteractionStart()
+    {
+        Debug.Log("Trigger is pulled");
+    }
+
+    /// <summary>
+    /// When the trigger is first released
+    /// </summary>
+    public virtual void OnInteractionStop()
+    {
+
+    }
+
+    /// <summary>
+    /// When the trigger is held down
+    /// </summary>
+    public virtual void OnInteractionUpdating()
+    {
+
     }
 }
