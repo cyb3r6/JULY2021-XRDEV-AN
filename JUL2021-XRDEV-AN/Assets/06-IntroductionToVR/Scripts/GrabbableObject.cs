@@ -18,7 +18,7 @@ public class GrabbableObject : MonoBehaviour
 
     void Awake()
     {
-        material = GetComponent<Renderer>().material;
+        material = GetComponentInChildren<Renderer>().material;
         grabbedRigidbody = GetComponent<Rigidbody>();
     }
 
