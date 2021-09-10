@@ -1,6 +1,7 @@
 ﻿namespace ArionDigital
 {
     using UnityEngine;
+    using UnityEngine.Events;
 
     public class CrashCrate : MonoBehaviour
     {
@@ -12,15 +13,17 @@
         public GameObject fracturedCrate;
         [Header("Audio")]
         public AudioSource crashAudioClip;
+        public UnityEvent OnBreak;
 
         private void OnCollisionEnter(Collision other)
         {
-            if(boxRigidbody.velocity.magnitude > 1.5)
+            if(boxRigidbody.velocity.magnitude > 1.75)
             {
                 wholeCrate.enabled = false;
                 boxCollider.enabled = false;
                 fracturedCrate.SetActive(true);
                 crashAudioClip.Play();
+                OnBreak?.Invoke();
             }
         }
 

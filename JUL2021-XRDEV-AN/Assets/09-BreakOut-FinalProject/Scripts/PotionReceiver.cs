@@ -27,6 +27,10 @@ public class PotionReceiver : MonoBehaviour
         {
             MasterController.instance.ReturnToNormal();
         }
+        if (potionType == "Unlocker")
+        {
+            OnPotionPoured?.Invoke(potionType);
+        }
     }
    
 }

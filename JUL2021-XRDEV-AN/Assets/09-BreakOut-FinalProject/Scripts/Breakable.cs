@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Breakable : MonoBehaviour
 {
@@ -12,11 +13,8 @@ public class Breakable : MonoBehaviour
 
     [SerializeField]
     private GameObject unbrokenObject;
-    
-    void Start()
-    {
-        
-    }
+
+    public UnityEvent OnBreak;
 
     
 
@@ -26,6 +24,8 @@ public class Breakable : MonoBehaviour
         {
             unbrokenObject.SetActive(false);
             brokenObject.SetActive(true);
+
+            OnBreak?.Invoke();
 
             Rigidbody[] rigidbodies = brokenObject.GetComponentsInChildren<Rigidbody>();
 

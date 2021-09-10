@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RobotFreeAnim : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class RobotFreeAnim : MonoBehaviour
 	float rotSpeed = 40f;
 	Animator anim;
 
-	
+	public UnityEvent OnBreak;
+
 	void Awake()
 	{
 		anim = gameObject.GetComponent<Animator>();
-		gameObject.transform.eulerAngles = rot;
 	}
 
     private void OnEnable()
@@ -28,21 +29,22 @@ public class RobotFreeAnim : MonoBehaviour
 
 	private void OnCollisionEnter(Collision other)
 	{
-		if (robotRigidbody.velocity.magnitude > 1.35)
+		if (robotRigidbody.velocity.magnitude > 1.75)
 		{
 			undestroyedRobot.SetActive(false);
 			destroyedRobot.SetActive(true);
+			OnBreak?.Invoke();
 		}
 	}
 
-			//   void Update()
-			//{
-			//	//CheckKey();
-			//	//gameObject.transform.eulerAngles = rot;
-			//}
+	//   void Update()
+	//{
+	//	//CheckKey();
+	//	//gameObject.transform.eulerAngles = rot;
+	//}
 
-		void CheckKey()
-		{
+	void CheckKey()
+	{
 		// Walk
 		if (Input.GetKey(KeyCode.W))
 		{

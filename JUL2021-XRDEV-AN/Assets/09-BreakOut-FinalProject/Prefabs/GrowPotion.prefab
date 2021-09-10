@@ -10307,6 +10307,10 @@ MonoBehaviour:
   destroyedBottle: {fileID: 5230880152791024507}
   bottleRigidbody: {fileID: 2728617950780854388}
   meshRenderer: {fileID: 951542207378820598}
+  OnBreak:
+    m_PersistentCalls:
+      m_Calls: []
+  breakSound: {fileID: 8300000, guid: b53e514124fcbf144bcfda0bb7fabae8, type: 3}
 --- !u!114 &7666106190332371946
 MonoBehaviour:
   m_ObjectHideFlags: 0

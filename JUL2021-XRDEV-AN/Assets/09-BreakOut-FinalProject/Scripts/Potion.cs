@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Potion : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class Potion : MonoBehaviour
     public MeshRenderer meshRenderer;
     private MaterialPropertyBlock materialPropertyBlock;
     private float startingFillAmount;
-    
+
+    public UnityEvent OnBreak;
+    public AudioClip breakSound;
+
     void OnEnable()
     {
         materialPropertyBlock = new MaterialPropertyBlock();
@@ -74,6 +78,10 @@ public class Potion : MonoBehaviour
                 }
             }
             destroyedBottle.SetActive(true);
+
+            OnBreak?.Invoke();
+
+            SoundManager.instance.PlaySFX(breakSound);
         }
     }
 }
