@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPosition: {fileID: 0}
-  maxScale: 4
+  maxScale: 5
   minScale: 0.3
 --- !u!1 &4887307808200151805
 GameObject:

@@ -17,7 +17,7 @@
 
         private void OnCollisionEnter(Collision other)
         {
-            if(boxRigidbody.velocity.magnitude > 1.75)
+            if(boxRigidbody.velocity.magnitude > 2)
             {
                 wholeCrate.enabled = false;
                 boxCollider.enabled = false;
